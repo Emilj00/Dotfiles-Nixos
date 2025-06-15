@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{pkgs, lib, ...}:
 
 {
   programs.nautilus-open-any-terminal = {
@@ -6,12 +6,12 @@
     terminal = "alacritty";
   };
 
-  environment.systemPackages = with pkgs; (config.environment.systemPackages or []) ++ [
-    nautilus
-    gvfs
-    udisks2
-    unzip
-    unrar
+  environment.systemPackages = lib.mkAfter [
+    pkgs.nautilus
+    pkgs.gvfs
+    pkgs.udisks2
+    pkgs.unzip
+    pkgs.unrar
   ];
 
   services.gvfs.enable = true;

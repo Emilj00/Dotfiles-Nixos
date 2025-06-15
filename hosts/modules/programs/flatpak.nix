@@ -1,8 +1,8 @@
-{pkgs, nix-flatpak, ...}:
+{pkgs, lib, nix-flatpak, ...}:
 
 {
-  environment.systemPackages = with pkgs; (config.environment.systemPackages or []) ++ [
-    flatpak
+  environment.systemPackages = lib.mkAfter [
+    pkgs.flatpak
   ];
 
   services.flatpak.enable = true;

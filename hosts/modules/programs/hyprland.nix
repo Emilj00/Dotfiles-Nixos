@@ -1,11 +1,11 @@
-{pkgs, ...}:
+{pkgs, lib, ...}:
 
 {
   programs.hyprland.enable = true;
 
-  environment.systemPackages = with pkgs; (config.environment.systemPackages or []) ++ [
-    pavucontrol
-    brightnessctl
-    pulseaudio
+  environment.systemPackages = lib.mkAfter  [
+    pkgs.pavucontrol
+    pkgs.brightnessctl
+    pkgs.pulseaudio
   ];
 }
