@@ -15,7 +15,7 @@ window#waybar {
   /* background: #232323; */
   /* background: rgba(40, 40, 40, 1); */
   /* border: 1px solid #32302F; */
-  /* border-bottom: 1px solid #282828; */
+  border-bottom: 2px solid #d8a657;
   /* border-radius: 1px; */
 }
 
