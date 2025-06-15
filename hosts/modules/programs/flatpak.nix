@@ -13,6 +13,6 @@
   }];
 
   services.flatpak.packages = [
-    "app/app.zen_browser.zen/x86_64/stable"
+    # "app/app.zen_browser.zen/x86_64/stable"
   ];
 }
