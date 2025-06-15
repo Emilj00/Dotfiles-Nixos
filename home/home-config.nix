@@ -13,8 +13,4 @@
   programs.vscode.enable = true;
   programs.tmux.enable = true;
   programs.btop.enable = true;
-
-  home.file.".config/hypr" = {
-    source = ./config/hypr;
-  };
 }
