@@ -11,11 +11,11 @@
 
 window#waybar {
   /* background: none; */
-  background: #1d2021;
+  background: #282828;
   /* background: #232323; */
   /* background: rgba(40, 40, 40, 1); */
   /* border: 1px solid #32302F; */
-  border-bottom: 2px solid #d8a657;
+  border-bottom: 2px solid #d79921;
   /* border-radius: 1px; */
 }
 
@@ -129,7 +129,7 @@ window#waybar.hidden {
 /* ======================================================== */
 #window {
   color: #282828;
-  background: #d8a657;
+  background: #d79921;
   border-radius: 0.7px;
   margin-top: 4px;
   margin-bottom: 4px;
@@ -181,7 +181,7 @@ window#waybar.empty #window {
 /* temp */
 /* ======================================================== */
 #temperature {
-  color: #d8a657;
+  color: #d79921;
 }
 
 #temperature.critical {
@@ -192,7 +192,7 @@ window#waybar.empty #window {
 /* backlight */
 /* ======================================================== */
 #backlight {
-  color: #d8a657;
+  color: #d79921;
 }
 
 /* ======================================================== */
