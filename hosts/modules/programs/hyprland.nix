@@ -7,5 +7,6 @@
     pkgs.pavucontrol
     pkgs.brightnessctl
     pkgs.pulseaudio
+    pkgs.bemenu
   ];
 }

@@ -6,6 +6,8 @@
     pkgs.fzf
     pkgs.zoxide
 
+    pkgs.micro
+
     pkgs.fastfetch
     pkgs.oh-my-posh
   ];
