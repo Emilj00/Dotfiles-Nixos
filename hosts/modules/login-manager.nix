@@ -1,8 +1,9 @@
 {
-  services.displayManager.sddm.enable = true;
-
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "emilj00";
-
-  services.xserver.enable = true;
+  services.greetd.enable = true;
+  services.greetd.settings = {
+    default_session = {
+      command = "Hyprland";
+      user = "emilj00";
+    };
+  };
 }
