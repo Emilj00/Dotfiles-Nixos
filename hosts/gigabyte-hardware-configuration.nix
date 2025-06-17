@@ -39,6 +39,8 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
+  hardware.graphics.enable = true;
+
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.open = true;
 
@@ -47,5 +49,11 @@
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY = "nvidia";
     LIBVA_DRIVER_NAME = "nvidia";
+  };
+
+  services.logind = {
+    lidSwitch = "ignore";
+    lidSwitchDocked = "ignore";
+    lidSwitchExternalPower = "ignore";
   };
 }

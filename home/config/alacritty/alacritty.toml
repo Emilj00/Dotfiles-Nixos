@@ -10,7 +10,7 @@ y = 6
 
 [general]
 import = [
-    "./themes/themes/gruvbox_material_hard_dark.toml"
+    "./themes/themes/gruvbox_dark.toml"
 ]
 
 ### Font configuration
