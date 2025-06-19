@@ -24,6 +24,13 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
+  fileSystems."/mnt/c" =
+    {
+      device = "/dev/disk/by-uuid/CA9687A69687921D";
+      fsType = "ntfs-3g";
+      options = [ "rw" "users" "uid=1000" "gid=100" "umask=022" ];
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/e94b8a13-6dc7-4f19-bad1-584dedb3b72c"; }
     ];
@@ -43,6 +50,10 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.open = true;
+
+  environment.systemPackages = lib.mkAfter [
+    pkgs.ntfs3g
+  ];
 
   environment.variables = {
     AQ_DRM_DEVICES = "/dev/dri/card0";

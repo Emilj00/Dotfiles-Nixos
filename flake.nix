@@ -22,44 +22,34 @@
       inherit system;
       config.allowUnfree = true;
     };
+
+    makeHostConfig = hostName: import ./hosts/${hostName}.nix;
+
+    makeNixosConfig = hostName: nixpkgs.lib.nixosSystem {
+      inherit system pkgs;
+
+      modules = [
+        (makeHostConfig hostName)
+
+        nix-flatpak.nixosModules.nix-flatpak
+
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+
+          home-manager.users.emilj00 = {
+            _module.args.hostName = hostName;
+            imports = [ ./home/home-config.nix ];
+          };
+        }
+      ];
+    };
   in
   {
     nixosConfigurations = {
-      thinkpad-host = nixpkgs.lib.nixosSystem {
-        inherit system pkgs;
-
-        modules = [
-          ./hosts/thinkpad-host.nix
-
-          nix-flatpak.nixosModules.nix-flatpak
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.users.emilj00 = import ./home/home-config.nix;
-          }
-        ];
-      };
-
-      gigabyte-host = nixpkgs.lib.nixosSystem {
-        inherit system pkgs;
-
-        modules = [
-          ./hosts/gigabyte-host.nix
-
-          nix-flatpak.nixosModules.nix-flatpak
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.users.emilj00 = import ./home/home-config.nix;
-          }
-        ];
-      };
+      thinkpad-host = makeNixosConfig "thinkpad-host";
+      gigabyte-host = makeNixosConfig "gigabyte-host";
     };
   };
 }

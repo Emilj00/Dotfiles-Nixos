@@ -8,10 +8,10 @@
   services.flatpak.enable = true;
 
   services.flatpak.overrides.global = {
-    Environment.GTK_THEME = "Gruvbox-Dark";
+    Environment.GTK_THEME = "Gruvbox";
     Context.filesystem = [
-      (lib.mkForce "$HOME/.themes:ro")
-      (lib.mkForce "$HOME/.icons:ro")
+      "/home/emilj00/.themes:ro"
+      "/home/emilj00/.icons:ro"
     ];
   };
 
