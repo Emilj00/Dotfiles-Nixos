@@ -4,18 +4,17 @@ let
   theme = pkgs.runCommand "unpack-gruvbox-dark" {
     buildInputs = [ pkgs.unzip ];
     src = pkgs.fetchurl {
-      # url = "https://ocs-dl.fra1.cdn.digitaloceanspaces.com/data/files/1641887808/Gruvbox-Dark-B-MB.zip?response-content-disposition=attachment%3B%2520Gruvbox-Dark-B-MB.zip&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=RWJAQUNCHT7V2NCLZ2AL%2F20250615%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250615T171840Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=14e975190c4221ca16c67abf513d94aee146cc71c90548368a27842620959a93";
-      url = "https://ocs-dl.fra1.cdn.digitaloceanspaces.com/data/files/1641887808/Gruvbox-Dark-Medium-BL-LB.zip?response-content-disposition=attachment%3B%2520Gruvbox-Dark-Medium-BL-LB.zip&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=RWJAQUNCHT7V2NCLZ2AL%2F20250617%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250617T172826Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=d2458d4735bba88bc0bc8cc64f8c2ac9651924f172eec491632b17dc28e5974a";
-      sha256 = "a94c031dee46383ee722295c5dc11b7e950235716f9b9f040b3b7ae247036997";
+      url = "https://ocs-dl.fra1.cdn.digitaloceanspaces.com/data/files/1641887808/Gruvbox-Dark-Medium-BL-MB.zip?response-content-disposition=attachment%3B%2520Gruvbox-Dark-Medium-BL-MB.zip&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=RWJAQUNCHT7V2NCLZ2AL%2F20250619%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250619T165819Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=cea0819604948a839ce2a5647034a4a28f971ad07b59a4eee2369197af9a02e9";
+      sha256 = "DwPuUe5peRWfnymTNkzZNfdQn/3rMFm2GNJNYTGFtiw=";
     };
   } ''
     mkdir -p $out
     unzip -q $src -d $out
+    chmod -R 755 $out
   '';
 
   gruvboxDarkDir = "${theme}/Gruvbox-Dark-Medium";
 in
-
 {
   home.file.".themes/Gruvbox-Dark".source = gruvboxDarkDir;
 
