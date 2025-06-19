@@ -12,6 +12,9 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.extraModprobeConfig = ''
+    options nvidia-drm modeset=1
+  '';
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/0bc0ce13-6079-4d25-b0c0-84e9de5444c5";

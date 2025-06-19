@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
-  theme = pkgs.runCommand "unpack-gruvbox-dark" {
+  gtkTheme = pkgs.runCommand "unpack-gruvbox-gtk" {
     buildInputs = [ pkgs.unzip ];
     src = pkgs.fetchurl {
       url = "https://ocs-dl.fra1.cdn.digitaloceanspaces.com/data/files/1641887808/Gruvbox-Dark-Medium-BL-MB.zip?response-content-disposition=attachment%3B%2520Gruvbox-Dark-Medium-BL-MB.zip&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=RWJAQUNCHT7V2NCLZ2AL%2F20250619%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250619T165819Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=cea0819604948a839ce2a5647034a4a28f971ad07b59a4eee2369197af9a02e9";
@@ -11,20 +11,60 @@ let
     mkdir -p $out
     unzip -q $src -d $out
     chmod -R 755 $out
+
+    echo "[Settings]" > $out/Gruvbox-Dark-Medium/gtk-3.0/settings.ini
+    echo "gtk-icon-theme-name=Gruvbox-Icons" >> $out/Gruvbox-Dark-Medium/gtk-3.0/settings.ini
+
+    echo "[Settings]" > $out/Gruvbox-Dark-Medium/gtk-4.0/settings.ini
+    echo "gtk-icon-theme-name=Gruvbox-Icons" >> $out/Gruvbox-Dark-Medium/gtk-4.0/settings.ini
   '';
 
-  gruvboxDarkDir = "${theme}/Gruvbox-Dark-Medium";
+  iconTheme = pkgs.runCommand "unpack-gruvbox-icons" {
+    buildInputs = [ pkgs.unzip ];
+    src = pkgs.fetchurl  {
+      url = "https://objects.githubusercontent.com/github-production-release-asset-2e65be/358262896/709fd6e6-c2b6-4cac-9769-ffdfc7e5aff2?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20250619%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250619T181919Z&X-Amz-Expires=300&X-Amz-Signature=eba62b16ed6d9f7b279534e3470b0c5256fb7921641b5d000e1c5415ece857f3&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dgruvbox-plus-icon-pack-6.2.0.zip&response-content-type=application%2Foctet-stream";
+      sha256 = "D+SPhucHU4Riz0mzU1LnaEkkaQt+blJMAsA5r6fTAQ0=";
+    };
+  } ''
+    mkdir -p $out
+    unzip -q $src -d $out
+    chmod -R 755 $out
+  '';
+
+  gruvboxGtkDir = "${gtkTheme}/Gruvbox-Dark-Medium";
+  gruvboxIconsDir = "${iconTheme}/Gruvbox-Plus-Dark";
 in
 {
-  home.file.".themes/Gruvbox-Dark".source = gruvboxDarkDir;
+  home.file.".themes/Gruvbox-Dark".source = gruvboxGtkDir;
+  home.file.".icons/Gruvbox-Icons".source = gruvboxIconsDir;
 
-  home.file.".config/cinnamon".source = "${gruvboxDarkDir}/cinnamon";
-  home.file.".config/gnome-shell".source = "${gruvboxDarkDir}/gnome-shell";
-  home.file.".config/gtk-2.0".source = "${gruvboxDarkDir}/gtk-2.0";
-  home.file.".config/gtk-3.0".source = "${gruvboxDarkDir}/gtk-3.0";
-  home.file.".config/gtk-4.0".source = "${gruvboxDarkDir}/gtk-4.0";
-  home.file.".config/index.theme".source = "${gruvboxDarkDir}/index.theme";
-  home.file.".config/metacity-1".source = "${gruvboxDarkDir}/metacity-1";
-  home.file.".config/plank".source = "${gruvboxDarkDir}/plank";
-  home.file.".config/xfwm4".source = "${gruvboxDarkDir}/xfwm4";
+  home.file.".config/gtk-3.0/settings.ini".text = ''
+    [Settings]
+    gtk-icon-theme-name=Gruvbox-Icons
+  '';
+
+  home.file.".config/gtk-4.0/settings.ini".text = ''
+    [Settings]
+    gtk-icon-theme-name=Gruvbox-Icons
+  '';
+
+  home.file.".config/cinnamon".source = "${gruvboxGtkDir}/cinnamon";
+  home.file.".config/gnome-shell".source = "${gruvboxGtkDir}/gnome-shell";
+  home.file.".config/gtk-2.0".source = "${gruvboxGtkDir}/gtk-2.0";
+  home.file.".config/gtk-3.0".source = "${gruvboxGtkDir}/gtk-3.0";
+  home.file.".config/gtk-4.0".source = "${gruvboxGtkDir}/gtk-4.0";
+  home.file.".config/index.theme".source = "${gruvboxGtkDir}/index.theme";
+  home.file.".config/metacity-1".source = "${gruvboxGtkDir}/metacity-1";
+  home.file.".config/plank".source = "${gruvboxGtkDir}/plank";
+  home.file.".config/xfwm4".source = "${gruvboxGtkDir}/xfwm4";
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+
+    name = "Bibata-Modern-Classic";
+    package = pkgs.bibata-cursors;
+
+    size = 24;
+  };
 }
