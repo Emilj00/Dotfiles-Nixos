@@ -8,7 +8,6 @@
 
   environment.systemPackages = lib.mkAfter [
     pkgs.nautilus
-    pkgs.gvfs
     pkgs.udisks2
     pkgs.unzip
     pkgs.unrar

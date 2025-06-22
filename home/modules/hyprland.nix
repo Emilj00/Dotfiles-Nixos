@@ -7,8 +7,9 @@ let
     env = LIBVA_DRIVER_NAME,nvidia
     env = __GLX_VENDOR_LIBRARY_NAME,nvidia
     env = GBM_BACKEND,nvidia-drm
-    env = __GL_GSYNC_ALLOWED,1
-    env = __GL_VRR_ALLOWED,1
+    env = __GL_GSYNC_ALLOWED,0
+    env = __GL_VRR_ALLOWED,0
+    env = WLR_RENDERER,vulkan
     env = WLR_NO_HARDWARE_CURSORS,1
     env = NVD_BACKEND,direct
   '' else "";

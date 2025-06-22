@@ -50,6 +50,7 @@
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
 
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.open = true;
@@ -63,6 +64,9 @@
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY = "nvidia";
     LIBVA_DRIVER_NAME = "nvidia";
+    WLR_RENDERER = "vulkan";
+    __GL_GSYNC_ALLOWED=0;
+    __GL_VRR_ALLOWED=0;
   };
 
   services.logind = {
