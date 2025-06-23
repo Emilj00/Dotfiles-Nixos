@@ -2,6 +2,7 @@
 
 {
   programs.hyprland.enable = true;
+  programs.hyprland.xwayland.enable = true;
 
   environment.systemPackages = lib.mkAfter [
     pkgs.pavucontrol

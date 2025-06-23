@@ -9,12 +9,9 @@
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" ];
-  boot.initrd.kernelModules = [ ];
+  boot.kernelParams = [ "nvidia-drm.modeset=1" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  boot.extraModprobeConfig = ''
-    options nvidia-drm modeset=1
-  '';
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/0bc0ce13-6079-4d25-b0c0-84e9de5444c5";
@@ -59,7 +56,7 @@
     pkgs.ntfs3g
   ];
 
-  environment.variables = {
+  environment.sessionVariables = {
     AQ_DRM_DEVICES = "/dev/dri/card0";
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY = "nvidia";
@@ -67,6 +64,7 @@
     WLR_RENDERER = "vulkan";
     __GL_GSYNC_ALLOWED=0;
     __GL_VRR_ALLOWED=0;
+    WLR_NO_HARDWARE_CURSORS=1;
   };
 
   services.logind = {
