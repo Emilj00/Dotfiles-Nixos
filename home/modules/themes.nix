@@ -22,12 +22,12 @@ let
   iconTheme = pkgs.runCommand "unpack-gruvbox-icons" {
     buildInputs = [ pkgs.unzip ];
     src = pkgs.fetchurl  {
-      url = "https://objects.githubusercontent.com/github-production-release-asset-2e65be/358262896/709fd6e6-c2b6-4cac-9769-ffdfc7e5aff2?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20250619%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250619T181919Z&X-Amz-Expires=300&X-Amz-Signature=eba62b16ed6d9f7b279534e3470b0c5256fb7921641b5d000e1c5415ece857f3&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dgruvbox-plus-icon-pack-6.2.0.zip&response-content-type=application%2Foctet-stream";
-      sha256 = "D+SPhucHU4Riz0mzU1LnaEkkaQt+blJMAsA5r6fTAQ0=";
+      url = "https://ocs-dl.fra1.cdn.digitaloceanspaces.com/data/files/1671986732/gruvbox-plus-icon-pack.6.2.0.tar.gz?response-content-disposition=attachment%3B%2520gruvbox-plus-icon-pack.6.2.0.tar.gz&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=RWJAQUNCHT7V2NCLZ2AL%2F20250623%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250623T203741Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=f45d3948d96bb922f0eec0c4b7e71f3deda3c9a58c631a11da95b83e8c1ec8a2";
+      sha256 = "9qCjoBOxET5ZzKSkj8zxBkm+m51VLNWc/3cPUV9KeeE=";
     };
   } ''
     mkdir -p $out
-    unzip -q $src -d $out
+    tar xf $src -C $out
     chmod -R 755 $out
   '';
 

@@ -41,3 +41,11 @@ alias x="exit"
 alias -- -="cd -"
 alias ..="cd .."
 alias ...="cd ../../"
+
+
+# Nix
+alias rebuild="sudo nixos-rebuild switch --flake ~/Dotfiles#thinkpad-host --impure"
+
+# Nix shells
+alias dev#rust='nix develop ~/Dotfiles#rust --command zsh'
+alias dev#node='nix develop ~/Dotfiles#node --command zsh'

@@ -23,6 +23,27 @@
       config.allowUnfree = true;
     };
 
+
+
+    shellFiles = builtins.readDir ./shells;
+
+    shellNames =
+      builtins.filter
+        (name: shellFiles.${name} == "regular" && builtins.match ".*\\.nix" name != null)
+        (builtins.attrNames shellFiles);
+
+    devShells =
+      builtins.listToAttrs
+        (map
+          (name: {
+            name = builtins.replaceStrings [".nix"] [""] name;
+            value = import (./shells + "/${name}") { inherit pkgs; };
+          })
+          shellNames);
+
+
+
+
     makeHostConfig = hostName: import ./hosts/${hostName}.nix;
 
     makeNixosConfig = hostName: nixpkgs.lib.nixosSystem {
@@ -51,5 +72,7 @@
       thinkpad-host = makeNixosConfig "thinkpad-host";
       gigabyte-host = makeNixosConfig "gigabyte-host";
     };
+
+    devShells.${system} = devShells;
   };
 }
