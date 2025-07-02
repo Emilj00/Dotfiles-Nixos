@@ -1,8 +1,6 @@
 alias sudo="sudo "
 alias apt="dnf"
 
-alias whereami="pwd"
-
 alias npm="yarn"
 
 alias ls="eza --icons"
@@ -12,7 +10,7 @@ alias lsla="ls -a -1"
 alias l='ls -lah'
 alias ll='ls -lh'
 alias la='ls -lAh'
-alias lsc='cls && ls'
+alias lsc='cls; ls'
 
 alias cp="cp -r"
 
@@ -27,7 +25,6 @@ alias help="tldr"
 
 alias fastfetch="fastfetch --config ~/.config/fastfetch.jsonc"
 alias neofetch="fastfetch"
-alias clc='cloc --exclude-dir=.git --exclude-from=.gitignore'
 alias nano="micro"
 alias tree="tree -a ."
 alias st="speedtest-cli"
@@ -44,7 +41,7 @@ alias ...="cd ../../"
 
 
 # Nix
-alias rebuild="sudo nixos-rebuild switch --flake ~/Dotfiles#thinkpad-host --impure"
+alias rebuild="sudo nixos-rebuild switch --flake ~/Dotfiles#$(hostname)-host --impure"
 
 # Nix shells
 alias dev#rust='nix develop ~/Dotfiles#rust --command zsh'

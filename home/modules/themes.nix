@@ -22,12 +22,12 @@ let
   iconTheme = pkgs.runCommand "unpack-gruvbox-icons" {
     buildInputs = [ pkgs.unzip ];
     src = pkgs.fetchurl  {
-      url = "https://ocs-dl.fra1.cdn.digitaloceanspaces.com/data/files/1671986732/gruvbox-plus-icon-pack.6.2.0.tar.gz?response-content-disposition=attachment%3B%2520gruvbox-plus-icon-pack.6.2.0.tar.gz&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=RWJAQUNCHT7V2NCLZ2AL%2F20250623%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250623T203741Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=f45d3948d96bb922f0eec0c4b7e71f3deda3c9a58c631a11da95b83e8c1ec8a2";
-      sha256 = "9qCjoBOxET5ZzKSkj8zxBkm+m51VLNWc/3cPUV9KeeE=";
+      url = "https://github.com/SylEleuth/gruvbox-plus-icon-pack/releases/download/v6.2.0/gruvbox-plus-icon-pack-6.2.0.zip";
+      sha256 = "D+SPhucHU4Riz0mzU1LnaEkkaQt+blJMAsA5r6fTAQ0=";
     };
   } ''
     mkdir -p $out
-    tar xf $src -C $out
+    unzip -q $src -d $out
     chmod -R 755 $out
   '';
 

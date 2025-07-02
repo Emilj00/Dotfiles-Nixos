@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  home.packages = lib.mkAfter [ 
+  home.packages = lib.mkAfter [
     pkgs.eza
     pkgs.fzf
     pkgs.zoxide
@@ -10,6 +10,8 @@
 
     pkgs.fastfetch
     pkgs.oh-my-posh
+
+    pkgs.cloc
   ];
 
   home.file = {

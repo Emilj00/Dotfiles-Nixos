@@ -9,8 +9,11 @@
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" ];
-  boot.kernelParams = [ "nvidia-drm.modeset=1" ];
   boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelParams = [
+    "nvidia-drm.modeset=1"
+    "nvidia-drm.fbdev=1"
+  ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
@@ -49,27 +52,35 @@
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
 
-  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.open = true;
+  # hardware.nvidia.prime = {
+  #   sync.enable = true;
+
+  #   intelBusId = "PCI:00:02:0";
+	# 	nvidiaBusId = "PCI:01:0:0";
+  # };
+
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   environment.systemPackages = lib.mkAfter [
     pkgs.ntfs3g
   ];
 
-  environment.sessionVariables = {
-    AQ_DRM_DEVICES = "/dev/dri/card0";
-    GBM_BACKEND = "nvidia-drm";
-    __GLX_VENDOR_LIBRARY = "nvidia";
-    LIBVA_DRIVER_NAME = "nvidia";
-    WLR_RENDERER = "vulkan";
-    __GL_GSYNC_ALLOWED=0;
-    __GL_VRR_ALLOWED=0;
-    WLR_NO_HARDWARE_CURSORS=1;
+  environment.variables = {
+    AQ_DRM_DEVICES              = "/dev/dri/card0";
+    GBM_BACKEND                 = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY        = "nvidia";
+    __GLX_VENDOR_LIBRARY_NAME   = "nvidia";
+    LIBVA_DRIVER_NAME           = "nvidia";
+    WLR_RENDERER                = "vulkan";
+    __GL_GSYNC_ALLOWED          = "0";
+    __GL_VRR_ALLOWED            = "0";
+    WLR_NO_HARDWARE_CURSORS     = "1";
   };
 
   services.logind = {
-    lidSwitch = "ignore";
-    lidSwitchDocked = "ignore";
-    lidSwitchExternalPower = "ignore";
+    lidSwitch                 = "ignore";
+    lidSwitchDocked           = "ignore";
+    lidSwitchExternalPower    = "ignore";
   };
 }

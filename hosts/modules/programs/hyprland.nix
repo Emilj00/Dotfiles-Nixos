@@ -9,6 +9,8 @@
     pkgs.brightnessctl
     pkgs.pulseaudio
     pkgs.bemenu
+    pkgs.grim
+    pkgs.hyprshot
   ];
 
   xdg.portal = {
