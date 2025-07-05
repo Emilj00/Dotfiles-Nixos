@@ -3,6 +3,7 @@
 {
   environment.systemPackages = lib.mkAfter [
     pkgs.flatpak
+    pkgs.gnome-software
   ];
 
   services.flatpak.enable = true;
@@ -22,5 +23,6 @@
 
   services.flatpak.packages = [
     "app/app.zen_browser.zen/x86_64/stable"
+    "org.gnome.gThumb"
   ];
 }
