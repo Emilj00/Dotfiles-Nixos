@@ -12,8 +12,9 @@
     Context.sockets = ["wayland" "!x11" "!fallback-x11"];
 
     Context.filesystem = [
-      "/home/emilj00/.themes:ro"
-      "/home/emilj00/.icons:ro"
+      "/nix/store/:ro"
+      "/home/emilj00/.themes/Gruvbox-Dark:ro"
+      "/home/emilj00/.icons/Bibata-Modern-Classic:ro"
     ];
 
     Environment = {
