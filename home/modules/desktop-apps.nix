@@ -4,6 +4,7 @@ let
   apps = {
     "x-scheme-handler/http"  = [ "app.zen_browser.zen.desktop" ];
     "x-scheme-handler/https" = [ "app.zen_browser.zen.desktop" ];
+
     "image/png"  = [ "org.gnome.gThumb.desktop" ];
     "image/jpeg" = [ "org.gnome.gThumb.desktop" ];
     "image/jpg"  = [ "org.gnome.gThumb.desktop" ];
