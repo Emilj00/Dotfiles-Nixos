@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 
 {
-  home.packages = lib.mkAfter [
+  home.packages = [
     pkgs.dejavu_fonts
     pkgs.jetbrains-mono
     pkgs.noto-fonts

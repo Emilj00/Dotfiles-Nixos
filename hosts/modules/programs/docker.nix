@@ -3,7 +3,7 @@
 {
   virtualisation.docker.enable = true;
 
-  environment.systemPackages = lib.mkAfter [
+  environment.systemPackages = [
     pkgs.lazydocker
   ];
 }

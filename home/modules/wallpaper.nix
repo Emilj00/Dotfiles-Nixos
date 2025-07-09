@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  home.packages = lib.mkAfter [
+  home.packages = [
     pkgs.swaybg
   ];
 }

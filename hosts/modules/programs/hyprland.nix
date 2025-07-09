@@ -4,11 +4,10 @@
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true;
 
-  environment.systemPackages = lib.mkAfter [
+  environment.systemPackages = [
     pkgs.pavucontrol
     pkgs.brightnessctl
     pkgs.pulseaudio
-    pkgs.bemenu
     pkgs.grim
     pkgs.hyprshot
   ];

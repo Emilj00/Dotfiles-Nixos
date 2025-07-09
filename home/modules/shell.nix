@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  home.packages = lib.mkAfter [
+  home.packages = [
     pkgs.eza
     pkgs.fzf
     pkgs.zoxide

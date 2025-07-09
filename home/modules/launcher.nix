@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 
 {
-  home.packages = lib.mkAfter [
+  home.packages = [
     pkgs.rofi-wayland
   ];
 

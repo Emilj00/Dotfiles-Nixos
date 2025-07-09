@@ -4,7 +4,7 @@ let
   gtkTheme = pkgs.runCommand "unpack-gruvbox-gtk" {
     buildInputs = [ pkgs.unzip ];
     src = pkgs.fetchurl {
-      url = "https://ocs-dl.fra1.cdn.digitaloceanspaces.com/data/files/1641887808/Gruvbox-Dark-Medium-BL-MB.zip?response-content-disposition=attachment%3B%2520Gruvbox-Dark-Medium-BL-MB.zip&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=RWJAQUNCHT7V2NCLZ2AL%2F20250619%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250619T165819Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=cea0819604948a839ce2a5647034a4a28f971ad07b59a4eee2369197af9a02e9";
+      url = "https://ocs-dl.fra1.cdn.digitaloceanspaces.com/data/files/1641887808/Gruvbox-Dark-Medium-BL-MB.zip?response-content-disposition=attachment%3B%2520Gruvbox-Dark-Medium-BL-MB.zip&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=RWJAQUNCHT7V2NCLZ2AL%2F20250706%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250706T073344Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=a69ec5da48a0d7cbf31e6811f18d1fb63e8feaabafcf818bd379cf2b052e9059";
       sha256 = "DwPuUe5peRWfnymTNkzZNfdQn/3rMFm2GNJNYTGFtiw=";
     };
   } ''

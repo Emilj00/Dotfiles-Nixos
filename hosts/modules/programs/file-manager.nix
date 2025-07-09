@@ -6,7 +6,7 @@
     terminal = "alacritty";
   };
 
-  environment.systemPackages = lib.mkAfter [
+  environment.systemPackages = [
     pkgs.nautilus
     pkgs.udisks2
     pkgs.unzip

@@ -4,16 +4,8 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
-
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.kernelParams = [
-    "nvidia-drm.modeset=1"
-    "nvidia-drm.fbdev=1"
-  ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
@@ -38,6 +30,7 @@
     [ { device = "/dev/disk/by-uuid/e94b8a13-6dc7-4f19-bad1-584dedb3b72c"; }
     ];
 
+
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
@@ -49,38 +42,7 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  hardware.graphics.enable = true;
-  hardware.graphics.enable32Bit = true;
-
-  hardware.nvidia.open = true;
-  # hardware.nvidia.prime = {
-  #   sync.enable = true;
-
-  #   intelBusId = "PCI:00:02:0";
-	# 	nvidiaBusId = "PCI:01:0:0";
-  # };
-
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  environment.systemPackages = lib.mkAfter [
+  environment.systemPackages = [
     pkgs.ntfs3g
   ];
-
-  environment.variables = {
-    AQ_DRM_DEVICES              = "/dev/dri/card0";
-    GBM_BACKEND                 = "nvidia-drm";
-    __GLX_VENDOR_LIBRARY        = "nvidia";
-    __GLX_VENDOR_LIBRARY_NAME   = "nvidia";
-    LIBVA_DRIVER_NAME           = "nvidia";
-    WLR_RENDERER                = "vulkan";
-    __GL_GSYNC_ALLOWED          = "0";
-    __GL_VRR_ALLOWED            = "0";
-    WLR_NO_HARDWARE_CURSORS     = "1";
-  };
-
-  services.logind = {
-    lidSwitch                 = "ignore";
-    lidSwitchDocked           = "ignore";
-    lidSwitchExternalPower    = "ignore";
-  };
 }

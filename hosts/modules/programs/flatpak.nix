@@ -1,7 +1,7 @@
 {pkgs, lib, nix-flatpak, ...}:
 
 {
-  environment.systemPackages = lib.mkAfter [
+  environment.systemPackages = [
     pkgs.flatpak
     pkgs.gnome-software
   ];
